@@ -61,7 +61,6 @@ class App extends Component {
                           isAuthenticated: true,
                           isLoading: false
                       });
-
                   },
                   (error) => {
                       this.setState({
