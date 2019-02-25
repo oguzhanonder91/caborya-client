@@ -6,10 +6,11 @@
     "antd": "^3.2.2",
     "axios": "^0.18.0",
     "js-cookie": "^2.2.0",
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "1.1.5"
+    "react-scripts": "1.1.5",
+    "universal-cookie": "^3.0.7"
   },
   "scripts": {
     "start": "react-app-rewired start",
