@@ -79,7 +79,7 @@ class Signup extends Component {
             (error) => {
                 notification.error({
                     message: 'Caborya App',
-                    description: error.message || 'Sorry! Something went wrong. Please try again!'
+                    description: error.response.data.message || 'Sorry! Something went wrong. Please try again!'
                 });
             });
     }

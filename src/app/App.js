@@ -91,7 +91,10 @@ class App extends Component {
                   });
               },
               (error) => {
-                  console.log(error);
+                  notification.error({
+                      message: 'Caborya App',
+                      description: error.response.data.message || 'Sorry! Something went wrong. Please try again!'
+                  });
               });
 
 

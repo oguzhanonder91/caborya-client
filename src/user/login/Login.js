@@ -48,7 +48,7 @@ class LoginForm extends Component {
                         this.props.onLogin();
                     },
                     (error) => {
-                        if(error.status === 401) {
+                        if(error.response.data.status === "401") {
                             notification.error({
                                 message: 'Caborya App',
                                 description: 'Your Username or Password is incorrect. Please try again!'
@@ -56,7 +56,7 @@ class LoginForm extends Component {
                         } else {
                             notification.error({
                                 message: 'Caborya App',
-                                description: error.message || 'Sorry! Something went wrong. Please try again!'
+                                description: error.response.data.message || 'Sorry! Something went wrong. Please try again!'
                             });
                         }
                     });
