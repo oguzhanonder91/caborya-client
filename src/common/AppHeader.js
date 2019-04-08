@@ -46,7 +46,7 @@ class AppHeader extends Component {
             <Header className="app-header">
                 <div className="container">
                     <div className="app-title">
-                            <Link to="/">Polling App</Link>
+                            <Link to="/">Caborya App</Link>
                     </div>
                     <Menu
                         className="app-menu"

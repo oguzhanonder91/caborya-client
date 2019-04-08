@@ -98,14 +98,14 @@ class App extends Component {
     this.props.history.push(redirectTo);
     
     notification[notificationType]({
-      message: 'Polling App',
+      message: 'Caborya App',
       description: description,
     });
   }
 
   handleLogin() {
     notification.success({
-      message: 'Polling App',
+      message: 'Caborya App',
       description: "You're successfully logged in.",
     });
     this.loadCurrentUser();

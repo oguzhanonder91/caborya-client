@@ -71,14 +71,14 @@ class Signup extends Component {
         axios.post(API_BASE_URL + "/user/registration", signupRequest
         ).then((result) => {
                 notification.success({
-                    message: 'Polling App',
+                    message: 'Caborya App',
                     description: "Thank you! You're successfully registered. Please Login to continue!",
                 });
                 this.props.history.push("/login");
             },
             (error) => {
                 notification.error({
-                    message: 'Polling App',
+                    message: 'Caborya App',
                     description: error.message || 'Sorry! Something went wrong. Please try again!'
                 });
             });
@@ -158,7 +158,7 @@ class Signup extends Component {
                             <Input
                                 size="large"
                                 name="matchingPassword"
-                                type="matchingPassword"
+                                type="password"
                                 autoComplete="off"
                                 placeholder="Must match password"
                                 value={this.state.matchingPassword.value}
