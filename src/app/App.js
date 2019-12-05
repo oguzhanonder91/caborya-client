@@ -47,7 +47,26 @@ class App extends Component {
       isLoading: true
     });
 
-      if(!document.cookie.includes("JSESSIONID")) {
+    let url = this.props.location.pathname;
+    if(url.includes("user/registrationConfirm")){
+        let confirmUrl = url.replace(url.split("/")[0],API_BASE_URL);
+        axios.get(confirmUrl)
+            .then(res => {
+                    notification.success({
+                        message: 'Caborya App',
+                        description: "You're successfully activated",
+                    });
+                    this.props.history.push("/login");
+                },
+                (error) => {
+                    notification.success({
+                        message: 'Caborya App',
+                        description: error.response.data.message || 'Sorry! Something went wrong. Please try again!'
+                    });
+                });
+    }
+
+    if(!document.cookie.includes("JSESSIONID")) {
           this.props.history.push("/login");
           this.setState({
               isAuthenticated: false,

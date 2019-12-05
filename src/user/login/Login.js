@@ -1,21 +1,25 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './Login.css';
-import { Link } from 'react-router-dom';
-import { API_BASE_URL } from '../../constants';
+import {Link} from 'react-router-dom';
+import {API_BASE_URL} from '../../constants';
 import axios from "axios";
 import Cookies from 'universal-cookie';
 
-import { Form, Input, Button, Icon, notification } from 'antd';
+import {Form, Input, Button, Icon, notification} from 'antd';
+
 const FormItem = Form.Item;
 
 class Login extends Component {
     render() {
+
+
         const AntWrappedLoginForm = Form.create()(LoginForm)
+
         return (
             <div className="login-container">
                 <h1 className="page-title">Login</h1>
                 <div className="login-content">
-                    <AntWrappedLoginForm onLogin={this.props.onLogin} />
+                    <AntWrappedLoginForm onLogin={this.props.onLogin}/>
                 </div>
             </div>
         );
@@ -23,6 +27,7 @@ class Login extends Component {
 }
 
 class LoginForm extends Component {
+
     constructor(props) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -30,7 +35,6 @@ class LoginForm extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-
 
         this.props.form.validateFields((err, values) => {
             if (!err) {
@@ -43,12 +47,18 @@ class LoginForm extends Component {
                 axios.post(API_BASE_URL + "/login", formData,
                 ).then((result) => {
                         const cookies = new Cookies();
+                        //document.location.pathname="/login";
                         cookies.set(
-                            result.data.sessionId.split(";")[0].split("=")[0],result.data.sessionId.split(";")[0].split("=")[1]);
+                            result.data.sessionId.split(";")[0].split("=")[0],
+                            result.data.sessionId.split(";")[0].split("=")[1],
+                            {
+                                path: "/",
+                            }
+                        );
                         this.props.onLogin();
                     },
                     (error) => {
-                        if(error.response.data.status === "401") {
+                        if (error.response.data.status === "401") {
                             notification.error({
                                 message: 'Caborya App',
                                 description: 'Your Username or Password is incorrect. Please try again!'
@@ -64,35 +74,34 @@ class LoginForm extends Component {
         });
 
 
-
     }
 
     render() {
-        const { getFieldDecorator } = this.props.form;
+        const {getFieldDecorator} = this.props.form;
         return (
             <Form onSubmit={this.handleSubmit} className="login-form">
                 <FormItem>
                     {getFieldDecorator('username', {
-                        rules: [{ required: true, message: 'Please input your username or email!' }],
+                        rules: [{required: true, message: 'Please input your username or email!'}],
                     })(
-                    <Input 
-                        prefix={<Icon type="user" />}
-                        size="large"
-                        name="username"
-                        placeholder="Username" />
+                        <Input
+                            prefix={<Icon type="user"/>}
+                            size="large"
+                            name="username"
+                            placeholder="Username"/>
                     )}
                 </FormItem>
                 <FormItem>
-                {getFieldDecorator('password', {
-                    rules: [{ required: true, message: 'Please input your Password!' }],
-                })(
-                    <Input 
-                        prefix={<Icon type="lock" />}
-                        size="large"
-                        name="password" 
-                        type="password" 
-                        placeholder="Password"  />                        
-                )}
+                    {getFieldDecorator('password', {
+                        rules: [{required: true, message: 'Please input your Password!'}],
+                    })(
+                        <Input
+                            prefix={<Icon type="lock"/>}
+                            size="large"
+                            name="password"
+                            type="password"
+                            placeholder="Password"/>
+                    )}
                 </FormItem>
                 <FormItem>
                     <Button type="primary" htmlType="submit" size="large" className="login-form-button">Login</Button>
